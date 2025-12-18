@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="page-contact">
+    
+    
+    <header class="header"></header>
+<script>
+    // Load header and footer from index.html
+    fetch('index.html')
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to load index.html');
+            return res.text();
+        })
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Get header and footer
+            const header = doc.querySelector('.header');
+            const footer = doc.querySelector('.footer');
+            
+            // Replace placeholders
+            if (header) {
+                document.querySelector('.header').outerHTML = header.outerHTML;
+            }
+            
+            if (footer) {
+                document.querySelector('.footer').outerHTML = footer.outerHTML;
+            }
+            
+            // Re-initialize mobile menu after loading
+            setTimeout(() => {
+                if (window.initMobileMenu) {
+                    initMobileMenu();
+                    updateCartCount();
+                    updateWishlistIcons();
+                }
+                
+                // Page-specific initialization
+                const bodyClass = document.body.className;
+                if (bodyClass.includes('page-home') && window.initHomePage) {
+                    initHomePage();
+                } else if (bodyClass.includes('page-products') && window.initProductsPage) {
+                    initProductsPage();
+                } else if (bodyClass.includes('page-cart') && window.initCartPage) {
+                    initCartPage();
+                }
+            }, 100);
+        })
+        .catch(error => {
+            console.error('Error loading header/footer:', error);
+            // Fallback: Show simple navigation
+            document.querySelector('.header').innerHTML = `
+                <div class="container navbar">
+                    <a href="index.html" class="logo">KENNETH MOTORS</a>
+                    <nav>
+                        <ul class="nav-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">Inventory</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                        </ul>
+                    </nav>
+                    <div class="nav-icons">
+                        <a href="cart.html" class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span id="cart-count"></span>
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.footer').innerHTML = `
+                <div class="container">
+                    <p style="text-align: center;">&copy; 2024 Kenneth Motors</p>
+                </div>
+            `;
+        });
+</script>
+    <div class="header"></div> <main class="container" style="padding: var(--spacing-lg) 0;">
+        <h1 class="section-title">Get in Touch with Kenneth Motors</h1>
+        
+        <div class="checkout-layout" style="grid-template-columns: 1.5fr 1fr; gap: var(--spacing-lg);">
+            
+            <section style="color: var(--color-light-neutral);">
+                <h2 style="color: var(--color-accent-gold); border-bottom: 1px solid var(--color-subtle-gray); padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-md);">Send Us a Message</h2>
+                <form id="contact-form">
+                    <div class="form-group"><input type="text" id="contact-name" name="name" placeholder="Your Full Name" required></div>
+                    <div class="form-group"><input type="email" id="contact-email" name="email" placeholder="Your Email Address" required></div>
+                    <div class="form-group"><input type="text" id="contact-subject" name="subject" placeholder="Subject (e.g., Financing, Appraisal, Sales)"></div>
+                    <div class="form-group"><textarea id="contact-message" name="message" placeholder="Your detailed inquiry (min 10 characters)" rows="6" required></textarea></div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </section>
+            
+            <aside style="background-color: var(--color-subtle-gray); padding: var(--spacing-md); border-radius: 5px; height: fit-content;">
+                <h3 style="border-bottom: 1px solid var(--color-accent-gold); padding-bottom: var(--spacing-xs); margin-bottom: var(--spacing-md);">Dealership Information</h3>
+                <p><strong>Head Office:</strong></p>
+                <p>1000 Prestige Blvd,<br>Automotive City, CA 90210</p>
+                
+                <h3 style="margin-top: var(--spacing-md); border-bottom: 1px solid var(--color-accent-gold); padding-bottom: var(--spacing-xs); margin-bottom: var(--spacing-md);">Sales & Support</h3>
+                <p><strong>Sales Phone:</strong> (800) 555-LUXE</p>
+                <p><strong>Email:</strong> <a href="mailto:sales@kennethmotors.com" style="color: var(--color-accent-gold);">sales@kennethmotors.com</a></p>
+                
+                <h3 style="margin-top: var(--spacing-md); border-bottom: 1px solid var(--color-accent-gold); padding-bottom: var(--spacing-xs); margin-bottom: var(--spacing-md);">Hours of Operation</h3>
+                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                <p>Saturday: 10:00 AM - 4:00 PM</p>
+                <p>Sunday: By Appointment Only</p>
+            </aside>
+        </div>
+
+    </main>
+
+    <div class="footer"></div> <script src="./js/data.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/ui.js"></script>
+</body>
+</html>

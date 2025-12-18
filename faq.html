@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Simple accordion styling for FAQs (Optional - controlled via CSS variables) */
+        .faq-item {
+            border: 1px solid var(--color-subtle-gray);
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: var(--color-subtle-gray);
+        }
+        .faq-question {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--color-accent-gold);
+            background-color: var(--color-subtle-gray);
+        }
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: var(--color-primary-black);
+            color: var(--color-light-neutral);
+        }
+        .faq-answer.open {
+            max-height: 500px; /* Large enough for any answer */
+            padding: 1rem 1.5rem;
+        }
+        .faq-question span {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        .faq-question.active span {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="page-faq">
+    
+    <header class="header">...</header>
+    <header class="header">...</header>
+<script>
+    // Load header and footer from index.html
+    fetch('index.html')
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to load index.html');
+            return res.text();
+        })
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Get header and footer
+            const header = doc.querySelector('.header');
+            const footer = doc.querySelector('.footer');
+            
+            // Replace placeholders
+            if (header) {
+                document.querySelector('.header').outerHTML = header.outerHTML;
+            }
+            
+            if (footer) {
+                document.querySelector('.footer').outerHTML = footer.outerHTML;
+            }
+            
+            // Re-initialize mobile menu after loading
+            setTimeout(() => {
+                if (window.initMobileMenu) {
+                    initMobileMenu();
+                    updateCartCount();
+                    updateWishlistIcons();
+                }
+                
+                // Page-specific initialization
+                const bodyClass = document.body.className;
+                if (bodyClass.includes('page-home') && window.initHomePage) {
+                    initHomePage();
+                } else if (bodyClass.includes('page-products') && window.initProductsPage) {
+                    initProductsPage();
+                } else if (bodyClass.includes('page-cart') && window.initCartPage) {
+                    initCartPage();
+                }
+            }, 100);
+        })
+        .catch(error => {
+            console.error('Error loading header/footer:', error);
+            // Fallback: Show simple navigation
+            document.querySelector('.header').innerHTML = `
+                <div class="container navbar">
+                    <a href="index.html" class="logo">KENNETH MOTORS</a>
+                    <nav>
+                        <ul class="nav-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">Inventory</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                        </ul>
+                    </nav>
+                    <div class="nav-icons">
+                        <a href="cart.html" class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span id="cart-count"></span>
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.footer').innerHTML = `
+                <div class="container">
+                    <p style="text-align: center;">&copy; 2024 Kenneth Motors</p>
+                </div>
+            `;
+        });
+</script>
+    <div class="header"></div>
+
+    <main class="container" style="padding: var(--spacing-lg) 0;">
+        <h1 class="section-title">Frequently Asked Questions</h1>
+        
+        <div style="max-width: 900px; margin: 0 auto;">
+            
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md); border-bottom: 1px solid var(--color-subtle-gray); padding-bottom: var(--spacing-xs);">General Inquiries</h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>+</span> How does the online purchase process work?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our online system allows you to browse inventory, calculate financing, and proceed to a simulated checkout. Once you "Place Final Order," a sales representative will contact you within one business hour to finalize the paperwork, secure payment, and arrange delivery of your vehicle.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>+</span> Are the vehicle prices final?
+                    </div>
+                    <div class="faq-answer">
+                        <p>The prices listed are the base sale prices. They do not include sales tax (calculated at checkout based on a configurable rate), registration fees, or a standard $995 processing fee. These amounts are detailed in the final summary on the checkout page.</p>
+                    </div>
+                </div>
+
+                <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-lg); border-bottom: 1px solid var(--color-subtle-gray); padding-bottom: var(--spacing-xs);">Financing & Delivery</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>+</span> What happens after I request a Test Drive?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Once you submit the Test Drive form on the product detail page, your preferred date and contact information are sent directly to our VIP concierge team. A representative will call or email you promptly to confirm the date, time, and location for your private test drive.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>+</span> Can I get the vehicle delivered to my home?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Kenneth Motors provides nationwide white-glove delivery service. The cost of delivery is generally included in the final price, depending on your location. Your sales representative will detail all shipping costs prior to finalizing your order.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>+</span> Is the financing calculator accurate?
+                    </div>
+                    <div class="faq-answer">
+                        <p>The calculator provides an **estimate** based on standard annuity formulas and assumed inputs (interest rate and term). Your actual monthly payment will depend on your final approved loan amount, credit score, and current market rates.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <div class="footer"></div>
+
+    <script src="./js/data.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/ui.js"></script>
+</body>
+</html>

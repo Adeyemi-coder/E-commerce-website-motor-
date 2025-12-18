@@ -1,0 +1,652 @@
+/* css/responsive.css */
+
+/* === 1. Tablet (max-width: 1024px) === */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .listing-content,
+    .product-detail-layout,
+    .cart-layout,
+    .checkout-layout {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .sidebar {
+        position: static;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* === 2. Mobile (max-width: 768px) === */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primary-black);
+        padding: var(--spacing-md);
+        border-top: 1px solid var(--color-subtle-gray);
+    }
+    
+    .nav-links.open {
+        display: flex;
+    }
+    
+    .nav-links li {
+        text-align: center;
+        padding: var(--spacing-sm) 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .hero {
+        align-items: flex-end;
+        padding-bottom: var(--spacing-xl);
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .cart-item-img {
+        width: 100%;
+        height: 150px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .gallery-main-image {
+        height: 300px;
+    }
+}
+
+/* === 3. Small Mobile (max-width: 480px) === */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+.featured-vehicles {
+  background: #111111;
+  padding: 100px 0;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.section-tag {
+  color: var(--color-accent-gold);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.section-header h2 {
+  font-size: 3rem;
+  margin: 15px 0;
+}
+
+.section-header p {
+  color: white;
+  font-size: 1.05rem;
+}
+
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+.vehicle-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 14px;
+  color: #fff;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.vehicle-card:hover img {
+  transform: scale(1.08);
+}
+
+.vehicle-info {
+  padding: 25px;
+}
+
+.vehicle-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.price {
+  color: var(--color-accent-gold);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.vehicle-specs {
+  display: flex;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-view {
+  display: inline-block;
+  padding: 12px 26px;
+  border: 1px solid var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.btn-view:hover {
+  background: var(--color-accent-gold);
+  color: #111;
+}
+/* === Luxury Experience Timeline === */
+.luxury-timeline {
+  padding: 100px 20px;
+  background: #121212;
+  color: #f5f5f5;
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.timeline-header h2 {
+  font-size: 2.5rem;
+  color: var(--color-accent-gold);
+  letter-spacing: 2px;
+}
+
+.timeline-header p {
+  max-width: 500px;
+  margin: 15px auto 0;
+  color: #aaa;
+}
+
+.timeline-container {
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: rgba(212, 175, 55, 0.3);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  margin-bottom: 70px;
+}
+.timeline-card {
+    background: #1b1b1b;
+    border-radius: 16px;
+    padding: 30px 32px;
+    max-width: 420px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: all 0.4s ease;
+}
+
+.timeline-item:nth-child(even) {
+  justify-content: flex-end;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  background: var(--color-accent-gold);
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+}
+
+.timeline-content {
+  width: 40%;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 25px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.timeline-content h3 {
+  color: var(--color-accent-gold);
+  margin-bottom: 10px;
+}
+
+.timeline-content p {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+  .timeline-container::before {
+    left: 20px;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    justify-content: flex-start;
+  }
+
+  .timeline-dot {
+    left: 20px;
+  }
+
+  .timeline-content {
+    width: 100%;
+    margin-left: 50px;
+  }
+}
+/* === End of Luxury Experience Timeline === */
+
+/* --- CINEMATIC PRELOADER --- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Pure Black Curtain */
+    z-index: 9999; /* Sits on top of EVERYTHING */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1); /* Smooth 'Curtain Rise' effect */
+}
+
+/* When Javascript adds this class, the curtain slides up */
+.preloader.loaded {
+    transform: translateY(-100%);
+}
+
+.preloader-content {
+    text-align: center;
+    position: relative;
+}
+
+.preloader-logo {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-accent-gold);
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* The thin gold line that grows */
+.loading-line {
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent-gold);
+    margin: 0 auto;
+    animation: loadLine 1.5s ease-in-out forwards;
+}
+
+/* ANIMATIONS */
+@keyframes textGlow {
+    from { opacity: 0.5; text-shadow: 0 0 10px rgba(201, 160, 74, 0.2); }
+    to { opacity: 1; text-shadow: 0 0 30px rgba(201, 160, 74, 0.8); }
+}
+
+@keyframes loadLine {
+    0% { width: 0; opacity: 1; }
+    80% { width: 200px; opacity: 1; }
+    100% { width: 200px; opacity: 0; } /* Fades out right before opening */
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .preloader-logo { font-size: 1.8rem; }
+}
+/* --- SCROLLING HEADER EFFECT --- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Start Transparent so we see the video behind it */
+    background-color: transparent; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0; /* Taller, more elegant spacing */
+    transition: all 0.4s ease; /* Smooth transition */
+}
+
+/* JavaScript adds this class when you scroll down */
+.header.scrolled {
+    background-color: rgba(11, 11, 11, 0.95); /* Turns Dark Black */
+    padding: 10px 0; /* Shrinks slightly */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Adds shadow */
+}
+/* --- HISTORY / HERITAGE SECTION --- */
+.section-history {
+    background-color: var(--color-primary-black);
+    padding: 100px 0;
+    overflow: hidden; /* Prevents overflow from animations */
+}
+
+.history-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split 50/50 */
+    gap: 80px;
+    align-items: center;
+}
+
+/* 1. Visual Wrapper (Left Side) */
+.visual-wrapper {
+    position: relative;
+    padding-top: 30px; /* Space for the top accent */
+    padding-left: 30px; /* Space for the top accent */
+}
+
+.history-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: grayscale(100%); /* Makes it look vintage/historical */
+    transition: filter 0.5s ease;
+}
+
+.history-img:hover {
+    filter: grayscale(0%); /* Color returns on hover */
+}
+
+/* 2. The Gold Corner Accent (Top Left) */
+.corner-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border-top: 5px solid var(--color-accent-gold);
+    border-left: 5px solid var(--color-accent-gold);
+    z-index: 1;
+}
+
+/* 3. The Stat Box Overlay (Bottom Right) */
+.stat-box {
+    position: absolute;
+    bottom: -30px; /* Hangs off the bottom edge */
+    right: 30px;   /* Hangs off the right side */
+    background-color: var(--color-accent-gold);
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+.stat-box i {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: var(--font-heading);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* 4. Text Content (Right Side) */
+.history-content {
+    padding-right: 20px;
+}
+
+.history-text {
+    color: #aaa;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.history-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-arrow {
+    font-size: 1.2rem;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-arrow:hover {
+    color: var(--color-accent-gold);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .history-layout {
+        grid-template-columns: 1fr; /* Stack vertically */
+        gap: 50px;
+    }
+    
+    .visual-wrapper {
+        padding: 0; /* Remove offset on mobile */
+        margin-bottom: 40px;
+    }
+    
+    .corner-accent {
+        display: none; /* Hide decorative border on small screens */
+    }
+    
+    .stat-box {
+        right: 0;
+        bottom: -20px;
+        width: 200px;
+        padding: 20px;
+    }
+    
+    .history-img {
+        height: 350px; /* Smaller image height */
+    }
+    
+    .history-content {
+        text-align: left;
+    }
+}
+/* --- THE VOGUE REVEAL (Cinematic Text) --- */
+
+/* 1. The Mask (Hides the text when it's 'down') */
+.reveal-mask {
+    display: block;
+    overflow: hidden; /* This is the magic: chops off anything outside */
+    line-height: 1.2; /* Tightens it up for the effect */
+}
+
+/* 2. The Text (Starts down, slides up) */
+.reveal-text {
+    display: block;
+    transform: translateY(110%); /* Start pushed down 110% (invisible) */
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease; /* The "Luxury" Ease */
+    will-change: transform;
+}
+
+/* 3. The Trigger (JS adds this class) */
+.revealed .reveal-text {
+    transform: translateY(0); /* Slide to natural position */
+    opacity: 1;
+}
+/* --- VOGUE TEXT REVEAL ANIMATION --- */
+.reveal-mask {
+    display: block;
+    overflow: hidden;
+    line-height: 1.2;
+}
+
+.reveal-text {
+    display: block;
+    transform: translateY(110%); /* Starts hidden below */
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+    will-change: transform;
+}
+
+/* The state when animation triggers */
+.revealed .reveal-text {
+    transform: translateY(0);
+    opacity: 1;
+}
+/* --- VOGUE TEXT REVEAL ANIMATION --- */
+.reveal-mask {
+    display: block;
+    overflow: hidden;
+    line-height: 1.2;
+}
+
+.reveal-text {
+    display: block;
+    transform: translateY(110%); /* Starts hidden below */
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+    will-change: transform;
+}
+
+/* The state when animation triggers */
+.revealed .reveal-text {
+    transform: translateY(0);
+    opacity: 1;
+}
+/* --- CINEMATIC CONSTANT MOVEMENT --- */
+
+/* 1. Make the History Image Zoom Slowly (Ken Burns Effect) */
+.visual-wrapper {
+    overflow: hidden; /* Important: Keeps the image inside the box */
+    border-radius: 2px;
+}
+
+.history-img {
+    /* Overwrite the previous transition to allow continuous movement */
+    animation: kenBurns 20s infinite alternate linear;
+    transform-origin: center center;
+}
+
+@keyframes kenBurns {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15); /* Slow zoom in by 15% */
+    }
+}
+
+/* 2. Make the Stat Box Float Gently (Levitation) */
+.stat-box {
+    animation: floatY 6s ease-in-out infinite;
+}
+
+@keyframes floatY {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px); /* Moves up 15px */
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}

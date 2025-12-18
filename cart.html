@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="./assets/logo.png">
+</head>
+<body class="page-cart">
+    
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">KENNETH MOTORS</div>
+            <div class="loading-line"></div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">KENNETH MOTORS</a>
+            
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Inventory</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-icons">
+                <span class="nav-icon" title="Wishlist" id="wishlist-icon">
+                    <i class="fa-regular fa-star"></i>
+                </span>
+                
+                <a href="cart.html" class="nav-icon" title="View Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count" style="display:none; font-size: 0.75rem; background: var(--color-accent-gold); color: var(--color-primary-black); border-radius: 50%; padding: 2px 5px; position: absolute; top: 10px; margin-left: -10px;"></span>
+                </a>
+                
+                <span class="nav-icon menu-toggle" id="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container" style="padding-top: 40px; min-height: 60vh;">
+        
+        <!-- Cart Header -->
+        <div class="page-header" data-aos="fade-up">
+            <h1 class="section-title">Your Luxury Cart</h1>
+            <p class="page-subtitle">Review your selected vehicles before proceeding to checkout</p>
+        </div>
+
+        <div class="cart-layout" data-aos="fade-up" data-aos-delay="200">
+            
+            <!-- Cart Items -->
+            <section class="cart-items-list">
+                <div class="cart-section-header">
+                    <h2><i class="fa-solid fa-car" style="margin-right: 10px;"></i> Selected Vehicles</h2>
+                    <span id="item-count">0 items</span>
+                </div>
+                
+                <div id="cart-items-container">
+                    <!-- Items will be loaded by JavaScript -->
+                    <div class="empty-cart-state">
+                        <i class="fa-solid fa-cart-shopping" style="font-size: 3rem; color: var(--color-accent-gold); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--color-accent-gold); margin-bottom: 10px;">Your Cart is Empty</h3>
+                        <p>Browse our exclusive collection of luxury vehicles.</p>
+                        <a href="product.html" class="btn btn-primary" style="margin-top: 1.5rem;">
+                            <i class="fa-solid fa-magnifying-glass" style="margin-right: 8px;"></i>
+                            Explore Inventory
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Order Summary -->
+            <aside class="cart-summary" data-aos="fade-left">
+                <div class="summary-card">
+                    <h3><i class="fa-solid fa-receipt" style="margin-right: 10px;"></i> Order Summary</h3>
+                    
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-line">
+                        <span>Tax (<span id="tax-rate">8%</span>)</span>
+                        <span id="cart-tax">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-line">
+                        <span>Processing & Documentation</span>
+                        <span>$995.00</span>
+                    </div>
+
+                    <div class="summary-line summary-total">
+                        <span>Total Amount</span>
+                        <span id="cart-grand-total">$0.00</span>
+                    </div>
+                    
+                    <p class="summary-note">
+                        <i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i>
+                        Includes complimentary vehicle preparation and delivery within 100 miles.
+                    </p>
+                    
+                    <a href="checkout.html" class="btn btn-primary" id="checkout-btn" style="width: 100%; margin-top: var(--spacing-md); pointer-events: none; opacity: 0.6;">
+                        <i class="fa-solid fa-lock" style="margin-right: 8px;"></i>
+                        Proceed to Secure Checkout
+                    </a>
+                    
+                    <a href="product.html" class="btn btn-secondary" style="width: 100%; margin-top: var(--spacing-sm); text-align: center; display: block;">
+                        <i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i>
+                        Continue Shopping
+                    </a>
+                    
+                    <div class="payment-methods">
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 20px; text-align: center;">
+                            <i class="fa-brands fa-cc-visa"></i> 
+                            <i class="fa-brands fa-cc-mastercard" style="margin: 0 10px;"></i>
+                            <i class="fa-brands fa-cc-amex"></i>
+                            <i class="fa-brands fa-bitcoin" style="margin-left: 10px;"></i>
+                        </p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Empty Cart Message -->
+        <div id="empty-cart-message" style="display: none; text-align: center; padding: 60px 20px;">
+            <i class="fa-solid fa-cart-shopping" style="font-size: 4rem; color: var(--color-accent-gold); margin-bottom: 30px;"></i>
+            <h2 style="color: var(--color-accent-gold); margin-bottom: 20px;">Your Luxury Garage Awaits</h2>
+            <p style="color: #aaa; max-width: 500px; margin: 0 auto 30px;">
+                Your cart is currently empty. Explore our curated collection of the world's finest automobiles.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="product.html" class="btn btn-primary">
+                    <i class="fa-solid fa-car" style="margin-right: 8px;"></i>
+                    Browse All Vehicles
+                </a>
+                <a href="product.html?brand=Rolls-Royce" class="btn btn-secondary">
+                    <i class="fa-solid fa-crown" style="margin-right: 8px;"></i>
+                    View Rolls-Royce
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-brand">
+                    <h2>KM.</h2>
+                    <p>Curating the finest automobiles for the world's most discerning drivers. Experience the art of motion.</p>
+                    
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Collection</h4>
+                    <ul>
+                        <li><a href="product-details.html?id=km-002">Rolls-Royce</a></li>
+                        <li><a href="product-details.html?id=km-006">Ferrari</a></li>
+                        <li><a href="product-details.html?id=km-009">Bentley</a></li>
+                        <li><a href="product.html">View All Inventory</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">Our Heritage</a></li>
+                        <li><a href="contact.html">Private Showroom</a></li>
+                        <li><a href="terms.html">Careers</a></li>
+                        <li>Press Room</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">Financing FAQ</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2025 Kenneth Motors Est. 2018</span>
+                <span>Abuja • London • Dubai</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS on this page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+            
+            // Fix for GitHub Pages path issues
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('a') && !e.target.closest('a').href.startsWith('http')) {
+                    const link = e.target.closest('a');
+                    const href = link.getAttribute('href');
+                    
+                    // Ensure proper path resolution
+                    if (href && !href.startsWith('#') && !href.startsWith('http')) {
+                        // Remove any leading/trailing issues
+                        const cleanHref = href.replace(/^\/|\/$/g, '');
+                        link.setAttribute('href', './' + cleanHref);
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script src="ui.js"></script>
+    
+    <!-- Cart Page Specific Script -->
+    <script>
+        // Cart page initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Cart page loaded');
+            
+            // Check if cart functions exist
+            if (typeof window.updateCartDisplay === 'function') {
+                window.updateCartDisplay();
+            } else {
+                console.error('Cart functions not loaded');
+                document.getElementById('cart-items-container').innerHTML = 
+                    '<div class="error-state"><p>Unable to load cart. Please refresh the page.</p></div>';
+            }
+            
+            // Update cart count in header
+            if (typeof updateCartIconCount === 'function') {
+                updateCartIconCount();
+            }
+        });
+    </script>
+</body>
+</html>

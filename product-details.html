@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="product-page-title">Loading Vehicle - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="page-product-detail">
+    
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">KENNETH MOTORS</a>
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Inventory</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <a href="cart.html" class="nav-icon"><i class="fa-solid fa-bag-shopping"></i><span id="cart-count"></span></a>
+                <span class="nav-icon menu-toggle" id="menu-toggle">☰</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px;">
+        
+        <div class="product-detail-layout">
+            
+            <div class="product-gallery" data-aos="fade-right">
+                <img id="gallery-main-image" src="" alt="Loading..." class="gallery-main-image" style="background-color: #111; min-height: 400px;">
+                
+                <div class="gallery-thumbnails" id="gallery-thumbnails">
+                    </div>
+                
+                <h3 style="margin-top: var(--spacing-lg);">Detailed Specifications</h3>
+                <table class="specs-table">
+                    <tbody id="specs-body"></tbody>
+                </table>
+            </div>
+
+            <div class="product-meta" data-aos="fade-left">
+                <span id="product-brand" class="brand"></span>
+                <h1 id="product-name">Loading...</h1>
+                <div id="product-price" class="price"></div>
+                
+                <p id="product-description" style="color: #ccc; margin: 20px 0;"></p>
+
+                <div class="detail-actions" style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-md);">
+                    <button class="btn btn-primary" id="detail-add-to-cart" style="flex: 1;">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-secondary wishlist-icon" id="detail-wishlist">
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+                </div>
+                
+                <hr style="border-color: var(--color-subtle-gray); margin: var(--spacing-md) 0;">
+
+                <div class="calculator">
+                    <h3>Financing Calculator</h3>
+                    <form id="financing-calculator">
+                        <div class="form-group">
+                            <label for="loan-amount">Loan Amount (Principal)</label>
+                            <input type="number" id="loan-amount" min="1000" step="1000">
+                        </div>
+                        <div class="form-group">
+                            <label for="interest-rate">Annual Interest Rate (%)</label>
+                            <input type="number" id="interest-rate" value="5" min="0.1" max="20" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="loan-term">Loan Term</label>
+                            <select id="loan-term">
+                                <option value="3">3 Years (36 Months)</option>
+                                <option value="4">4 Years (48 Months)</option>
+                                <option value="5">5 Years (60 Months)</option>
+                                <option selected value="6">6 Years (72 Months)</option>
+                                <option value="7">7 Years (84 Months)</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <p style="text-transform: uppercase; font-size: 0.8rem; color: #888;">Estimated Monthly Payment</p>
+                        <div class="monthly-payment" id="monthly-payment-output" style="color: var(--color-accent-gold); font-size: 1.5rem; font-weight: bold;">$0 / month</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2024 Kenneth Motors</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script src="ui.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Init Animation
+            if(typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
+
+            // 2. Get Car ID from URL (e.g., ?id=km-001)
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+
+            // 3. Find Car in Database
+            if (typeof carProducts === 'undefined') {
+                console.error('Data.js not loaded!');
+                return;
+            }
+
+            const product = carProducts.find(p => p.id === productId);
+
+            if (product) {
+                // FILL TEXT DATA
+                document.title = `${product.name} - Kenneth Motors`;
+                document.getElementById('product-brand').textContent = product.brand;
+                document.getElementById('product-name').textContent = product.name;
+                document.getElementById('product-price').textContent = '$' + product.price.toLocaleString();
+                document.getElementById('product-description').textContent = product.description || 'Experience the pinnacle of automotive engineering.';
+
+                // --- INTERACTIVE GALLERY LOGIC ---
+                const mainImg = document.getElementById('gallery-main-image');
+                const thumbContainer = document.getElementById('gallery-thumbnails');
+                
+                // Set Main Image
+                if (mainImg) {
+                    mainImg.src = product.images[0]; // First image is default
+                    mainImg.alt = product.name;
+                    mainImg.style.transition = 'opacity 0.3s ease';
+                }
+
+                // Generate Thumbnails
+                if (thumbContainer && product.images && product.images.length > 0) {
+                    thumbContainer.innerHTML = ''; // Clear empty space
+                    
+                    product.images.forEach((imgSrc, index) => {
+                        const thumb = document.createElement('img');
+                        thumb.src = imgSrc;
+                        thumb.className = index === 0 ? 'thumbnail active' : 'thumbnail';
+                        
+                        // Click to Swap
+                        thumb.onclick = () => {
+                            // Fade Out
+                            mainImg.style.opacity = '0.5';
+                            // Swap & Fade In
+                            setTimeout(() => {
+                                mainImg.src = imgSrc;
+                                mainImg.style.opacity = '1';
+                            }, 150);
+                            
+                            // Highlight Thumbnail
+                            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                            thumb.classList.add('active');
+                        };
+                        
+                        thumbContainer.appendChild(thumb);
+                    });
+                }
+
+                // FILL SPECS
+                const specsBody = document.getElementById('specs-body');
+                if (specsBody && product.specs) {
+                    specsBody.innerHTML = `
+                        <tr><th>Engine</th><td>${product.specs.engine || 'N/A'}</td></tr>
+                        <tr><th>Horsepower</th><td>${product.specs.horsepower || 'N/A'}</td></tr>
+                        <tr><th>0-60 mph</th><td>${product.specs.acceleration || 'N/A'}</td></tr>
+                        <tr><th>Top Speed</th><td>${product.specs.topSpeed || 'N/A'}</td></tr>
+                        <tr><th>Transmission</th><td>${product.specs.transmission || 'N/A'}</td></tr>
+                    `;
+                }
+
+                // SETUP BUTTONS
+                const addBtn = document.getElementById('detail-add-to-cart');
+                if (addBtn) {
+                    addBtn.onclick = () => {
+                        if (window.addToCart && window.addToCart(product.id)) {
+                            addBtn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
+                            addBtn.style.backgroundColor = '#28a745';
+                            setTimeout(() => {
+                                addBtn.innerHTML = '<i class="fa-solid fa-cart-plus"></i> Add to Cart';
+                                addBtn.style.backgroundColor = '';
+                            }, 2000);
+                        }
+                    };
+                }
+
+                // FINANCE CALCULATOR
+                const price = product.price;
+                const loanInput = document.getElementById('loan-amount');
+                if (loanInput) loanInput.value = Math.round(price * 0.8);
+                
+                const calcForm = document.getElementById('financing-calculator');
+                const monthlyOut = document.getElementById('monthly-payment-output');
+
+                const calculatePayment = () => {
+                    if (!loanInput || !monthlyOut) return;
+                    const p = parseFloat(loanInput.value) || 0;
+                    const r = (parseFloat(document.getElementById('interest-rate').value) || 5) / 100 / 12;
+                    const n = parseFloat(document.getElementById('loan-term').value) * 12;
+                    const monthly = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+                    
+                    monthlyOut.textContent = isFinite(monthly) ? '$' + Math.round(monthly).toLocaleString() + ' / month' : '---';
+                };
+
+                if (calcForm) {
+                    calcForm.addEventListener('input', calculatePayment);
+                    calculatePayment();
+                }
+
+            } else {
+                document.querySelector('.product-detail-layout').innerHTML = 
+                    '<div style="text-align:center; padding: 50px;"><h2>Vehicle Not Found</h2><p>Return to <a href="index.html">Home</a></p></div>';
+            }
+        });
+    </script>
+</body>
+</html>

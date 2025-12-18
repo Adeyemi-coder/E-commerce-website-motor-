@@ -1,0 +1,1159 @@
+/* css/styles.css - COMPLETE VERSION */
+
+/* === 1. GLOBAL IMPORTS & CSS VARIABLES === */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700;900&display=swap');
+
+:root {
+    /* Branding Colors */
+    --color-primary-black: #0B0B0B;
+    --color-accent-gold: #C9A04A;
+    --color-deep-blue: #0E3A63;
+    --color-light-neutral: #F5F5F5;
+    --color-subtle-gray: #2F2F2F;
+
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-weight-bold: 700;
+    --font-weight-normal: 400;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+
+    /* Transitions & Shadows */
+    --transition-speed: 0.3s;
+    --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-premium: 0 10px 20px rgba(0, 0, 0, 0.3);
+    
+}
+
+/* === 2. GLOBAL RESET & BASE STYLES === */
+body {
+    background-color: var(--color-primary-black);
+    color: var(--color-light-neutral);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+/* === UNIVERSAL FIXES FOR ALL PAGES === */
+
+/* Ensure all pages have consistent styling */
+.page-products,
+.page-product-detail,
+.page-cart,
+.page-checkout,
+.page-contact,
+.page-about,
+.page-privacy,
+.page-terms,
+.page-faq {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-products main,
+.page-product-detail main,
+.page-cart main,
+.page-checkout main,
+.page-contact main,
+.page-about main,
+.page-privacy main,
+.page-terms main,
+.page-faq main {
+    flex: 1;
+    padding: var(--spacing-lg) 0;
+}
+
+/* Fix for main container spacing */
+.container {
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+}
+
+/* Fix for forms on all pages */
+form {
+    background-color: rgba(47, 47, 47, 0.3);
+    padding: var(--spacing-md);
+    border-radius: 5px;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Fix for page-specific titles */
+.page-products h1,
+.page-product-detail h1,
+.page-cart h1,
+.page-checkout h1,
+.page-contact h1,
+.page-about h1,
+.page-privacy h1,
+.page-terms h1,
+.page-faq h1 {
+    color: var(--color-accent-gold);
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Fix for links in content */
+main a {
+    color: var(--color-accent-gold);
+    text-decoration: underline;
+}
+
+main a:hover {
+    color: var(--color-light-neutral);
+}
+
+/* Fix for lists */
+main ul, main ol {
+    padding-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+main li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Fix for tables */
+main table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-md);
+}
+
+main th, main td {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-subtle-gray);
+    text-align: left;
+}
+
+main th {
+    background-color: var(--color-subtle-gray);
+    color: var(--color-accent-gold);
+}
+
+/* Fix for images in content */
+main img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: var(--spacing-md) 0;
+}
+
+/* Fix for code blocks */
+main code, main pre {
+    background-color: var(--color-subtle-gray);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+main pre {
+    padding: var(--spacing-md);
+    overflow-x: auto;
+}
+
+/* Fix for blockquotes */
+main blockquote {
+    border-left: 4px solid var(--color-accent-gold);
+    padding-left: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    font-style: italic;
+    color: var(--color-light-neutral);
+    opacity: 0.9;
+}
+
+/* Fix for horizontal rules */
+main hr {
+    border: none;
+    height: 1px;
+    background-color: var(--color-subtle-gray);
+    margin: var(--spacing-lg) 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-accent-gold);
+    margin-top: 0;
+}
+
+a {
+    color: var(--color-light-neutral);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--color-accent-gold);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* === 3. BUTTONS === */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    border: 2px solid var(--color-accent-gold);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    text-align: center;
+    border-radius: 3px;
+}
+
+.btn-primary {
+    background-color: var(--color-accent-gold);
+    color: var(--color-primary-black);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--color-accent-gold);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-accent-gold);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-accent-gold);
+    color: var(--color-primary-black);
+}
+
+/* === 4. FORMS === */
+input, textarea, select {
+    width: 100%;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    background-color: var(--color-subtle-gray);
+    border: 1px solid var(--color-subtle-gray);
+    color: var(--color-light-neutral);
+    font-family: var(--font-body);
+    border-radius: 3px;
+    transition: border-color var(--transition-speed);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--color-accent-gold);
+}
+
+::placeholder {
+    color: rgba(245, 245, 245, 0.5);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-light-neutral);
+    font-weight: var(--font-weight-normal);
+}
+
+/* === 5. HEADER & NAVIGATION === */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(11, 11, 11, 0.95);
+    border-bottom: 1px solid var(--color-subtle-gray);
+    padding: var(--spacing-sm) 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-accent-gold);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    text-transform: uppercase;
+    font-weight: var(--font-weight-bold);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent-gold);
+    transition: width var(--transition-speed);
+}
+
+.nav-links a:hover::after, .nav-links .active::after {
+    width: 100%;
+}
+
+.nav-icons {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color var(--transition-speed);
+    position: relative;
+}
+
+.nav-icon:hover {
+    color: var(--color-accent-gold);
+}
+
+#cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 0.75rem;
+    background: var(--color-accent-gold);
+    color: var(--color-primary-black);
+    border-radius: 50%;
+    padding: 2px 6px;
+    min-width: 20px;
+    text-align: center;
+    display: none;
+}
+
+#cart-count.show {
+    display: inline-block;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* === 6. HERO SECTION === */
+/* In the .hero class, change this: */
+.hero {
+    height: 100vh;
+    /* Change this line: */
+    background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.25)
+  );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    padding: var(--spacing-lg);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-light-neutral);
+    text-shadow: var(--shadow-subtle);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* === 7. SECTION TITLES === */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* === 8. PRODUCT CARDS === */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-lg);
+}
+
+.product-card {
+    background-color: var(--color-subtle-gray);
+    overflow: hidden;
+    box-shadow: var(--shadow-subtle);
+    transition: all var(--transition-speed);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-premium);
+}
+
+.product-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.product-card-body {
+    padding: var(--spacing-md);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card-body h3 {
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-light-neutral);
+}
+
+.product-card-body .brand {
+    color: var(--color-accent-gold);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-sm);
+}
+
+.product-card-price {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-gold);
+    margin: auto 0 var(--spacing-sm);
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.card-actions .btn {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.badge {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    background-color: var(--color-deep-blue);
+    color: var(--color-light-neutral);
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-bold);
+    border-radius: 3px;
+    z-index: 5;
+}
+
+/* === 9. PRODUCT LISTING FILTERS === */
+.listing-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-md);
+}
+
+.sidebar {
+    padding: var(--spacing-md);
+    background-color: var(--color-subtle-gray);
+    border-radius: 5px;
+    height: fit-content;
+    position: sticky;
+    top: 80px;
+}
+
+.filter-group {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-group h4 {
+    color: var(--color-accent-gold);
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.sort-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+/* === 10. PRODUCT DETAIL PAGE === */
+.product-detail-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+}
+
+.gallery-main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: var(--spacing-sm);
+    box-shadow: var(--shadow-premium);
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: var(--spacing-sm);
+    overflow-x: auto;
+    padding-bottom: var(--spacing-sm);
+}
+
+.thumbnail {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all var(--transition-speed);
+    border-radius: 3px;
+}
+
+.thumbnail:hover, .thumbnail.active {
+    border-color: var(--color-accent-gold);
+    transform: scale(1.05);
+}
+
+.product-meta .price {
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-gold);
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-md);
+}
+
+.specs-table th, .specs-table td {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-subtle-gray);
+    text-align: left;
+}
+
+.specs-table th {
+    color: var(--color-accent-gold);
+    width: 40%;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.calculator, .test-drive-form {
+    background-color: var(--color-subtle-gray);
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    border-radius: 5px;
+}
+
+.monthly-payment {
+    font-size: 1.8rem;
+    color: var(--color-accent-gold);
+    font-weight: var(--font-weight-bold);
+    margin-top: var(--spacing-sm);
+}
+
+/* === 11. CART & CHECKOUT === */
+.cart-layout, .checkout-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+}
+
+.cart-item {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--color-subtle-gray);
+    align-items: center;
+}
+
+.cart-item-img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-details h4 {
+    color: var(--color-light-neutral);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.cart-summary {
+    background-color: var(--color-subtle-gray);
+    padding: var(--spacing-md);
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-total {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-gold);
+    border-top: 2px solid var(--color-accent-gold);
+    padding-top: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    border-bottom: none;
+}
+
+/* === 12. FOOTER === */
+.footer {
+    background-color: var(--color-deep-blue);
+    color: var(--color-light-neutral);
+    padding: var(--spacing-lg) 0 var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-col h4 {
+    color: var(--color-accent-gold);
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-sm);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* === 13. UTILITY CLASSES === */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+
+/* === 14. NOTIFICATION MESSAGES === */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    z-index: 9999;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* --- TESTIMONIALS SECTION --- */
+.section-testimonials {
+    background-color: #111111; /* Slightly lighter than the black timeline */
+    padding: 100px 0;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.testimonial-card {
+    background: #0a0a0a; /* Dark card background */
+    border: 1px solid #222;
+    padding: 40px 30px;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-gold); /* Gold glow on hover */
+}
+
+/* Make the middle card stand out slightly */
+.testimonial-card.featured {
+    background: #161616;
+    border-color: #333;
+}
+
+.stars {
+    color: var(--color-gold);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.quote {
+    color: #ccc;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+}
+
+.client-name {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.client-role {
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- GHOST GOLD MARQUEE (The "Better" Version) --- */
+.brand-marquee {
+    background-color: #000; /* Matches your dark theme */
+    padding: 30px 0;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #222; /* Subtle divider */
+    
+    /* This creates the fade effect on the left and right edges */
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+    );
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content; /* Ensures the track fits the content */
+    animation: scroll-left 40s linear infinite; /* Slower, more majestic speed */
+}
+
+.marquee-track span {
+    font-family: var(--font-heading);
+    font-size: 2.5rem; /* Larger, bolder text */
+    font-weight: 700;
+    margin: 0 50px; /* More space between brands */
+    text-transform: uppercase;
+    
+    /* THE "GHOST" EFFECT: Hollow text with Gold Outline */
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5); /* Dim Gold Outline */
+    transition: all 0.3s ease; /* Smooth hover transition */
+    cursor: default;
+}
+
+/* Hover Effect: When you mouse over the strip, the text lights up solid Gold */
+.brand-marquee:hover .marquee-track span {
+    color: var(--color-gold); /* Fills with solid gold */
+    -webkit-text-stroke: 0px transparent;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); /* Glowing effect */
+}
+
+.brand-marquee:hover .marquee-track {
+    animation-play-state: paused; /* Stops moving so you can read it */
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- EXPANDING GALLERY SECTION --- */
+.section-expanding-gallery {
+    height: 600px; /* Tall, cinematic height */
+    background-color: #000;
+    overflow: hidden;
+}
+
+.gallery-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-panel {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    flex: 0.5; /* Start narrow */
+    position: relative;
+    cursor: pointer;
+    transition: flex 0.7s cubic-bezier(0.05, 0.6, 0.4, 0.9); /* The smooth 'Breathtaking' ease */
+    border-right: 1px solid rgba(0,0,0,0.5);
+    display: flex;
+    align-items: flex-end; /* Text at bottom */
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* Dark overlay to make text readable */
+.gallery-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+/* Hover Interaction: The Magic Part */
+.gallery-panel:hover {
+    flex: 3; /* Expands wide when hovered */
+}
+
+.gallery-panel:hover::before {
+    opacity: 0.3; /* Brighten image on hover */
+}
+
+.panel-content {
+    position: relative;
+    z-index: 2;
+    opacity: 0; /* Hidden by default for cleaner look */
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    transition-delay: 0.1s;
+    width: 100%;
+}
+
+/* Show text only when expanded/hovered */
+.gallery-panel:hover .panel-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.panel-content h3 {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.panel-content p {
+    color: var(--color-gold);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Mobile Responsiveness: Stack them instead of side-by-side */
+@media (max-width: 768px) {
+    .section-expanding-gallery {
+        height: auto;
+    }
+    .gallery-container {
+        flex-direction: column;
+        height: 80vh; /* Takes up most of the screen */
+    }
+    .gallery-panel {
+        flex: 1; /* Equal height on mobile */
+        border-right: none;
+        border-bottom: 1px solid #000;
+    }
+    .gallery-panel:hover {
+        flex: 3; /* Expands vertically on mobile */
+    }
+    /* Always show text on mobile so they know what it is */
+    .panel-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .panel-content h3 {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* --- HOLOGRAPHIC 3D TILT EFFECT --- */
+
+/* 1. Make the card a 3D object */
+.product-card {
+    /* Existing styles remain... */
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease; /* Fast transform for smoothness */
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform; /* Performance optimization */
+}
+
+/* 2. The "Glare" Light Layer */
+.product-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(255, 255, 255, 0.15) 0%, 
+        transparent 50%
+    );
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    z-index: 2; 
+    pointer-events: none;
+    mix-blend-mode: overlay; 
+    border-radius: inherit;
+}
+
+/* 3. Show Glare on Hover */
+.product-card:hover::after {
+    opacity: 1;
+}
+
+/* 4. Lift Content slightly for Depth */
+.product-card-body, 
+.product-card-image {
+    transform: translateZ(20px); /* Pushes content forward in 3D */
+}
+
+
+/* --- THE EXECUTIVE SIGNATURE NEWSLETTER --- */
+.newsletter-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.newsletter-form {
+    display: flex;
+    align-items: center; /* Aligns input and button */
+    gap: 20px;
+    background: transparent; /* Removes old background */
+    padding: 0;
+}
+
+/* 1. The "Signature" Input */
+.input-group {
+    position: relative;
+    flex-grow: 1;
+    height: 50px;
+}
+
+.input-group input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333; /* Dark subtle line */
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: var(--font-heading); /* Elegant font */
+    padding: 10px 0;
+    outline: none;
+    transition: all 0.4s ease;
+}
+
+/* 2. Floating Label Effect */
+.input-group label {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    color: #666;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+/* Move label up when typing */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    font-size: 0.7rem;
+    color: var(--color-accent-gold);
+}
+
+/* 3. The Animated Gold Line */
+.gold-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: var(--color-accent-gold);
+    transition: width 0.5s ease;
+    box-shadow: 0 0 10px var(--color-accent-gold);
+}
+
+.input-group input:focus ~ .gold-line {
+    width: 100%; /* Expands across when clicked */
+}
+
+/* 4. The "Request Access" Button */
+.btn-signature {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.btn-signature:hover {
+    color: var(--color-accent-gold);
+}
+
+.btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.btn-signature:hover .btn-icon {
+    transform: translateX(5px); /* Arrow slides right */
+}
+
+/* Mobile Fix */
+@media (max-width: 600px) {
+    .newsletter-form {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .btn-signature {
+        width: 100%;
+        justify-content: center;
+        border: 1px solid #333;
+        padding: 15px;
+    }
+}
+

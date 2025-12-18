@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="page-terms">
+    
+   
+   <header class="header"></header>
+<script>
+    // Load header and footer from index.html
+    fetch('index.html')
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to load index.html');
+            return res.text();
+        })
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Get header and footer
+            const header = doc.querySelector('.header');
+            const footer = doc.querySelector('.footer');
+            
+            // Replace placeholders
+            if (header) {
+                document.querySelector('.header').outerHTML = header.outerHTML;
+            }
+            
+            if (footer) {
+                document.querySelector('.footer').outerHTML = footer.outerHTML;
+            }
+            
+            // Re-initialize mobile menu after loading
+            setTimeout(() => {
+                if (window.initMobileMenu) {
+                    initMobileMenu();
+                    updateCartCount();
+                    updateWishlistIcons();
+                }
+                
+                // Page-specific initialization
+                const bodyClass = document.body.className;
+                if (bodyClass.includes('page-home') && window.initHomePage) {
+                    initHomePage();
+                } else if (bodyClass.includes('page-products') && window.initProductsPage) {
+                    initProductsPage();
+                } else if (bodyClass.includes('page-cart') && window.initCartPage) {
+                    initCartPage();
+                }
+            }, 100);
+        })
+        .catch(error => {
+            console.error('Error loading header/footer:', error);
+            // Fallback: Show simple navigation
+            document.querySelector('.header').innerHTML = `
+                <div class="container navbar">
+                    <a href="index.html" class="logo">KENNETH MOTORS</a>
+                    <nav>
+                        <ul class="nav-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">Inventory</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                        </ul>
+                    </nav>
+                    <div class="nav-icons">
+                        <a href="cart.html" class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span id="cart-count"></span>
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.footer').innerHTML = `
+                <div class="container">
+                    <p style="text-align: center;">&copy; 2024 Kenneth Motors</p>
+                </div>
+            `;
+        });
+</script>
+
+    <div class="header"></div> <main class="container" style="padding: var(--spacing-lg) 0;">
+        <h1 class="section-title">Terms of Service</h1>
+        
+        <div style="max-width: 900px; margin: 0 auto; color: var(--color-light-neutral);">
+            
+            <p style="font-size: 0.9rem; color: var(--color-accent-gold);">
+                Last Updated: December 11, 2025
+            </p>
+            
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">1. Acceptance of Terms</h2>
+            <p>By accessing or using the Kenneth Motors website, you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access the Service.</p>
+
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">2. Use of the Site</h2>
+            <p>The Kenneth Motors website is provided for the purpose of showcasing luxury vehicles and facilitating preliminary inquiries (test drives, financing calculation, and simulated purchase checkout).</p>
+            <ul>
+                <li>The purchase process is simulated and does not constitute a legal, binding contract until executed with a certified sales representative offline.</li>
+                <li>All vehicle prices are subject to change without notice and do not include taxes, registration fees, or dealer fees unless explicitly stated.</li>
+            </ul>
+
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">3. Intellectual Property</h2>
+            <p>The Service and its original content (excluding content provided by users), features, and functionality are and will remain the exclusive property of Kenneth Motors and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Kenneth Motors.</p>
+            
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">4. Limitation of Liability</h2>
+            <p>In no event shall Kenneth Motors, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any unauthorized access to or use of our servers and/or any and all personal information stored therein.</p>
+            
+            <p style="margin-top: var(--spacing-lg);">
+                For any questions about these Terms, please contact us via the <a href="contact.html" style="color: var(--color-accent-gold); font-weight: bold;">Contact Page</a>.
+            </p>
+            
+        </div>
+    </main>
+
+    <div class="footer"></div> <script src="./js/data.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/ui.js"></script>
+</body>
+</html>

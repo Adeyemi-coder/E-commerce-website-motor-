@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="page-privacy">
+    
+   
+    <header class="header"></header>
+<script>
+    // Load header and footer from index.html
+    fetch('index.html')
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to load index.html');
+            return res.text();
+        })
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Get header and footer
+            const header = doc.querySelector('.header');
+            const footer = doc.querySelector('.footer');
+            
+            // Replace placeholders
+            if (header) {
+                document.querySelector('.header').outerHTML = header.outerHTML;
+            }
+            
+            if (footer) {
+                document.querySelector('.footer').outerHTML = footer.outerHTML;
+            }
+            
+            // Re-initialize mobile menu after loading
+            setTimeout(() => {
+                if (window.initMobileMenu) {
+                    initMobileMenu();
+                    updateCartCount();
+                    updateWishlistIcons();
+                }
+                
+                // Page-specific initialization
+                const bodyClass = document.body.className;
+                if (bodyClass.includes('page-home') && window.initHomePage) {
+                    initHomePage();
+                } else if (bodyClass.includes('page-products') && window.initProductsPage) {
+                    initProductsPage();
+                } else if (bodyClass.includes('page-cart') && window.initCartPage) {
+                    initCartPage();
+                }
+            }, 100);
+        })
+        .catch(error => {
+            console.error('Error loading header/footer:', error);
+            // Fallback: Show simple navigation
+            document.querySelector('.header').innerHTML = `
+                <div class="container navbar">
+                    <a href="index.html" class="logo">KENNETH MOTORS</a>
+                    <nav>
+                        <ul class="nav-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">Inventory</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                        </ul>
+                    </nav>
+                    <div class="nav-icons">
+                        <a href="cart.html" class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span id="cart-count"></span>
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.footer').innerHTML = `
+                <div class="container">
+                    <p style="text-align: center;">&copy; 2024 Kenneth Motors</p>
+                </div>
+            `;
+        });
+</script>
+    <div class="header"></div> <main class="container" style="padding: var(--spacing-lg) 0;">
+        <h1 class="section-title">Privacy Policy</h1>
+        
+        <div style="max-width: 900px; margin: 0 auto; color: var(--color-light-neutral);">
+            
+            <p style="font-size: 0.9rem; color: var(--color-accent-gold);">
+                Last Updated: December 11, 2025
+            </p>
+            
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">1. Information We Collect</h2>
+            <p>We collect information you directly provide to us, such as your name, email address, and phone number when you fill out the Contact form, Test Drive request form, or subscribe to our newsletter. We also collect information automatically, including IP addresses, browser type, and page usage data, to improve the quality of our service.</p>
+
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">2. How We Use Your Information</h2>
+            <p>The information we collect is used to:</p>
+            <ul>
+                <li>Process your requests for test drives and financing consultations.</li>
+                <li>Communicate with you regarding our inventory, offers, and events.</li>
+                <li>Improve our website's functionality and user experience.</li>
+                <li>Store your cart and wishlist preferences via browser **Local Storage**.</li>
+            </ul>
+
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">3. Data Security and Local Storage</h2>
+            <p>We implement industry-standard security measures to protect your information. Note that this website uses your browser's **Local Storage** to save your shopping cart and wishlist items for convenience. This data is stored locally on your device and is not transmitted to us unless you complete a form (like checkout or contact).</p>
+            
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">4. Your Rights</h2>
+            <p>You have the right to request access to the personal data we hold about you and to ask for that data to be corrected or deleted. Please note that deleting data stored in your browser's Local Storage must be done manually via your browser settings.</p>
+            
+            <p style="margin-top: var(--spacing-lg);">
+                If you have privacy concerns, please review our <a href="terms.html" style="color: var(--color-accent-gold); font-weight: bold;">Terms of Service</a> or contact us directly.
+            </p>
+            
+        </div>
+    </main>
+
+    <div class="footer"></div> <script src="./js/data.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/ui.js"></script>
+</body>
+</html>

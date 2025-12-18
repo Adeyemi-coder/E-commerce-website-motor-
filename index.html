@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenneth Motors - Luxury Car E-commerce</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="./assets/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="page-home">
+    
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">KENNETH MOTORS</div>
+            <div class="loading-line"></div>
+        </div>
+    </div>
+    
+    <!-- HEADER - SINGLE CORRECT HEADER -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">KENNETH MOTORS</a>
+            
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="product.html">Inventory</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-icons">
+                <span class="nav-icon" title="Wishlist" id="wishlist-icon">
+                    <i class="fa-regular fa-star"></i>
+                </span>
+                
+                <a href="cart.html" class="nav-icon" title="View Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count" style="display:none; font-size: 0.75rem; background: var(--color-accent-gold); color: var(--color-primary-black); border-radius: 50%; padding: 2px 5px; position: absolute; top: 10px; margin-left: -10px;"></span>
+                </a>
+                
+                <span class="nav-icon menu-toggle" id="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="reveal-text">The Art of Automotive Excellence</h1>
+                <p>Discover our curated collection of the world's most luxurious and high-performance vehicles.</p>
+                <a href="product.html" class="btn btn-primary btn-large">
+                    <i class="fa-solid fa-car" style="margin-right: 10px;"></i>
+                    Explore Luxury Rides
+                </a>
+            </div>
+        </section>
+
+        <!-- BRAND MARQUEE -->
+        <div class="brand-marquee">
+            <div class="marquee-track">
+                <span>MERCEDES-BENZ</span>
+                <span class="separator">•</span>
+                <span>ROLLS-ROYCE</span>
+                <span class="separator">•</span>
+                <span>BENTLEY</span>
+                <span class="separator">•</span>
+                <span>ASTON MARTIN</span>
+                <span class="separator">•</span>
+                <span>PORSCHE</span>
+                <span class="separator">•</span>
+                <span>LAMBORGHINI</span>
+                <span class="separator">•</span>
+                <span>MASERATI</span>
+                <span class="separator">•</span>
+                <span>MERCEDES-BENZ</span>
+                <span class="separator">•</span>
+                <span>ROLLS-ROYCE</span>
+                <span class="separator">•</span>
+                <span>BENTLEY</span>
+                <span class="separator">•</span>
+                <span>ASTON MARTIN</span>
+                <span class="separator">•</span>
+                <span>PORSCHE</span>
+                <span class="separator">•</span>
+                <span>LAMBORGHINI</span>
+                <span class="separator">•</span>
+                <span>MASERATI</span>
+                <span class="separator">•</span>
+            </div>
+        </div>
+
+        <!-- FEATURED VEHICLES -->
+        <section class="featured-vehicles">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-tag">Featured Collection</span>
+                    <h2 class="section-title reveal-text">Featured Vehicles</h2>
+                    <p>Explore our handpicked selection of world-class luxury automobiles.</p>
+                </div>
+
+                <div class="vehicles-grid product-grid" id="featured-cars">
+                    <!-- Featured cars will be loaded by JavaScript -->
+                    <div class="loading-placeholder">
+                        <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--color-accent-gold);"></i>
+                        <p style="margin-top: 1rem;">Loading luxury vehicles...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LUXURY EXPERIENCE TIMELINE -->
+        <section class="luxury-timeline">
+            <div class="timeline-header" data-aos="fade-up">
+                <h2 class="reveal-text">Luxury Experience</h2>
+                <p>A journey crafted for excellence</p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Arrival Experience</h3>
+                        <p>Step into an atmosphere of elegance where every detail is designed to reflect prestige, comfort, and trust.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Personal Customization</h3>
+                        <p>Tailor your vehicle to your lifestyle — from handcrafted interiors to exclusive exterior finishes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Precision Engineering</h3>
+                        <p>Experience cutting-edge technology, refined performance, and uncompromising safety standards.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>White-Glove Delivery</h3>
+                        <p>Your vehicle is delivered with excellence — inspected, detailed, and presented with luxury care.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPANDING GALLERY -->
+        <section class="section-expanding-gallery">
+            <div class="gallery-container">
+                <div class="gallery-panel active" style="background-image: url('https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=2574&auto=format&fit=crop');">
+                    <div class="panel-content">
+                        <h3>Super Sport</h3>
+                        <p>Pure Adrenaline</p>
+                    </div>
+                </div>
+
+                <div class="gallery-panel" style="background-image: url('https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=2574&auto=format&fit=crop');">
+                    <div class="panel-content">
+                        <h3>Executive Class</h3>
+                        <p>Unmatched Comfort</p>
+                    </div>
+                </div>
+
+                <div class="gallery-panel" style="background-image: url('https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=2670&auto=format&fit=crop');">
+                    <div class="panel-content">
+                        <h3>Luxury SUVs</h3>
+                        <p>Dominance & Power</p>
+                    </div>
+                </div>
+
+                <div class="gallery-panel" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2670&auto=format&fit=crop');">
+                    <div class="panel-content">
+                        <h3>Electric Future</h3>
+                        <p>Silent Performance</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTORY SECTION -->
+        <section class="section-history">
+            <div class="container">
+                <div class="history-layout">
+                    <div class="history-visual" data-aos="fade-right">
+                        <div class="visual-wrapper">
+                            <div class="corner-accent"></div>
+                            <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1000&auto=format&fit=crop" 
+                                 alt="Kenneth Motors Workshop History" 
+                                 class="history-img">
+                            <div class="stat-box">
+                                <i class="fa-solid fa-users-line"></i>
+                                <span class="stat-number">2,434</span>
+                                <span class="stat-label">Clients Served</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="history-content" data-aos="fade-left">
+                        <span class="section-tag">Our History</span>
+                        <h2 class="section-title reveal-text">The Founding of Kenneth Motors</h2>
+                        <p class="history-text">
+                            Established in 2018, Kenneth Motors began with a singular vision: to curate the world's finest automobiles for Nigeria's most discerning drivers. 
+                            <br><br>
+                            What started as a private concierge service has evolved into a premier dealership, bridging the gap between international luxury markets and local automotive excellence. We don't just sell cars; we deliver a legacy of performance.
+                        </p>
+                        <div class="history-nav">
+                            <i class="fa-solid fa-arrow-left nav-arrow"></i>
+                            <i class="fa-solid fa-arrow-right nav-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section-testimonials">
+            <div class="container">
+                <div class="section-header text-center" data-aos="fade-up">
+                    <h5 style="color: var(--color-accent-gold); text-transform: uppercase; letter-spacing: 2px;">Client Stories</h5>
+                    <h2 class="section-title reveal-text">Voices of Excellence</h2>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card" data-aos="fade-up">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="quote">"Kenneth Motors didn't just sell me a car; they delivered a masterpiece. The white-glove delivery service to my estate was impeccable."</p>
+                        <div class="client-info">
+                            <h4 class="client-name">James Sterling</h4>
+                            <span class="client-role">CEO, Sterling Ventures</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card featured" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="quote">"I have purchased Ferraris and Bentleys across the globe, but the attention to detail Kenneth provides is unmatched. Truly a VIP experience."</p>
+                        <div class="client-info">
+                            <h4 class="client-name">Sarah Jenkins</h4>
+                            <span class="client-role">Architectural Designer</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="quote">"From the customization options to the final handover, everything was seamless. My new Rolls-Royce Ghost is absolute perfection."</p>
+                        <div class="client-info">
+                            <h4 class="client-name">Michael Adebayo</h4>
+                            <span class="client-role">Investment Banker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER CTA -->
+        <section class="section-cta container">
+            <div class="newsletter-wrapper" data-aos="fade-up">
+                <h2 class="section-title reveal-text">Join the Inner Circle</h2>
+                <p style="color: #888; margin-bottom: 40px; font-size: 0.9rem; letter-spacing: 1px;">
+                    EARLY ACCESS • PRIVATE EVENTS • LIMITED RELEASES
+                </p>
+                
+                <form class="newsletter-form" id="vip-newsletter">
+                    <div class="input-group">
+                        <input type="email" id="newsletter-email" placeholder=" " required autocomplete="off">
+                        <label for="newsletter-email">Your Email Address</label>
+                        <div class="gold-line"></div>
+                    </div>
+                    <button type="submit" class="btn-signature">
+                        <span class="btn-text">Request Access</span>
+                        <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>KM.</h2>
+                    <p>Curating the finest automobiles for the world's most discerning drivers. Experience the art of motion.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Collection</h4>
+                    <ul>
+                        <li><a href="product-details.html?id=km-002">Rolls-Royce</a></li>
+                        <li><a href="product-details.html?id=km-006">Ferrari</a></li>
+                        <li><a href="product-details.html?id=km-009">Bentley</a></li>
+                        <li><a href="product.html">View All Inventory</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">Our Heritage</a></li>
+                        <li><a href="contact.html">Private Showroom</a></li>
+                        <li><a href="terms.html">Careers</a></li>
+                        <li>Press Room</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="faq.html">Financing FAQ</a></li>
+                        <li><a href="contact.html">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2025 Kenneth Motors Est. 2018</span>
+                <span>Abuja • London • Dubai</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // GitHub Pages compatibility fix
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100,
+                    easing: 'ease-out-cubic'
+                });
+            }
+            
+            // Fix for GitHub Pages relative paths
+            const currentPath = window.location.pathname;
+            const isGitHubPages = currentPath.includes('github.io');
+            
+            if (isGitHubPages) {
+                // Ensure all local links work on GitHub Pages
+                document.querySelectorAll('a[href^="./"], a[href^="/"]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                        const cleanHref = href.replace(/^\/|^\.\//, '');
+                        link.setAttribute('href', './' + cleanHref);
+                    }
+                });
+            }
+            
+            // Console check for debugging
+            console.log('Kenneth Motors loaded successfully');
+            console.log('Current path:', window.location.pathname);
+            console.log('GitHub Pages:', isGitHubPages);
+        });
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>

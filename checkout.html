@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="page-checkout">
+    
+    <header class="header"></header>
+    <script>
+        fetch('index.html').then(res => res.text()).then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            document.querySelector('.header').outerHTML = doc.querySelector('.header').outerHTML;
+            document.querySelector('.footer').outerHTML = doc.querySelector('.footer').outerHTML;
+            setTimeout(() => { if(window.initMobileMenu) initMobileMenu(); }, 100);
+        });
+    </script>
+    <div class="header"></div> <main class="container">
+        <h1 class="section-title" style="margin-top: var(--spacing-lg);">Secure Checkout</h1>
+
+        <div class="checkout-layout">
+            
+            <section class="checkout-form-section">
+                <form id="checkout-form">
+                    
+                    <h2 style="color: var(--color-accent-gold); border-bottom: 1px solid var(--color-subtle-gray); padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-md);">1. Contact & Shipping</h2>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John B. Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="name@luxurymail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(555) 555-5555">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Shipping Address (Vehicle Delivery)</label>
+                        <input type="text" id="address" name="address" required placeholder="123 Luxury Lane">
+                    </div>
+                    <div class="form-group" style="display: flex; gap: var(--spacing-sm);">
+                        <input type="text" id="city" name="city" required placeholder="City" style="flex: 2;">
+                        <input type="text" id="zip" name="zip" required placeholder="ZIP Code" style="flex: 1;">
+                    </div>
+                    
+                    <h2 style="color: var(--color-accent-gold); border-bottom: 1px solid var(--color-subtle-gray); padding-bottom: var(--spacing-sm); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-md);">2. Payment Method</h2>
+                    <p style="color: var(--color-light-neutral); background-color: var(--color-subtle-gray); padding: var(--spacing-sm); border-left: 3px solid var(--color-accent-gold);">
+            
+                    </p>
+                    <div class="form-group" style="margin-top: var(--spacing-md);">
+                        <label for="payment-method">Payment Option</label>
+                        <select id="payment-method">
+                            <option>Wire Transfer</option>
+                            <option>Financing Confirmed</option>
+                            <option>Credit Card<option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--spacing-lg); font-size: 1.2rem;">
+                        Place Final Order
+                    </button>
+                    
+                </form>
+            </section>
+
+            <aside class="cart-summary" style="height: fit-content;">
+                <h3>Order Summary</h3>
+                <p style="text-align: center; color: var(--color-accent-gold); border-bottom: 1px dashed var(--color-subtle-gray); padding-bottom: var(--spacing-sm);">
+                    <span id="checkout-item-count">0</span> Item(s) in Cart
+                </p>
+                
+                <div class="summary-line"><span>Subtotal</span><span id="checkout-summary-subtotal">$0</span></div>
+                <div class="summary-line"><span>Taxes (8%)</span><span id="checkout-summary-tax">$0</span></div>
+                <div class="summary-line"><span>Processing Fee</span><span>$100</span></div>
+
+                <div class="summary-line summary-total">
+                    <span>Grand Total</span>
+                    <span id="checkout-summary-total">$0</span>
+                </div>
+                
+            </aside>
+        </div>
+    </main>
+
+    <div class="footer"></div> <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>

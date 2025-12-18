@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="page-about">
+    
+
+   <header class="header"></header>
+<script>
+    // Load header and footer from index.html
+    fetch('index.html')
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to load index.html');
+            return res.text();
+        })
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Get header and footer
+            const header = doc.querySelector('.header');
+            const footer = doc.querySelector('.footer');
+            
+            // Replace placeholders
+            if (header) {
+                document.querySelector('.header').outerHTML = header.outerHTML;
+            }
+            
+            if (footer) {
+                document.querySelector('.footer').outerHTML = footer.outerHTML;
+            }
+            
+            // Re-initialize mobile menu after loading
+            setTimeout(() => {
+                if (window.initMobileMenu) {
+                    initMobileMenu();
+                    updateCartCount();
+                    updateWishlistIcons();
+                }
+                
+                // Page-specific initialization
+                const bodyClass = document.body.className;
+                if (bodyClass.includes('page-home') && window.initHomePage) {
+                    initHomePage();
+                } else if (bodyClass.includes('page-products') && window.initProductsPage) {
+                    initProductsPage();
+                } else if (bodyClass.includes('page-cart') && window.initCartPage) {
+                    initCartPage();
+                }
+            }, 100);
+        })
+        .catch(error => {
+            console.error('Error loading header/footer:', error);
+            // Fallback: Show simple navigation
+            document.querySelector('.header').innerHTML = `
+                <div class="container navbar">
+                    <a href="index.html" class="logo">KENNETH MOTORS</a>
+                    <nav>
+                        <ul class="nav-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">Inventory</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                        </ul>
+                    </nav>
+                    <div class="nav-icons">
+                        <a href="cart.html" class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span id="cart-count"></span>
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.footer').innerHTML = `
+                <div class="container">
+                    <p style="text-align: center;">&copy; 2024 Kenneth Motors</p>
+                </div>
+            `;
+        });
+</script>
+    
+        <h1 class="section-title">Our Story: The Kenneth Motors Legacy</h1>
+        
+        <div style="max-width: 800px; margin: 0 auto; color: var(--color-light-neutral);">
+            
+            <p style="font-size: 1.1rem; margin-bottom: var(--spacing-md); color: var(--color-accent-gold);">
+                Kenneth Motors was founded on the principle that acquiring a luxury vehicle should be an experience as refined as the cars themselves. We are not just a dealership; we are curators of automotive dreams, sourcing and presenting only the most exceptional vehicles from around the globe.
+            </p>
+            
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">The Commitment to Excellence</h2>
+            <p>Every vehicle in our inventory is a hand-selected masterpiece. We ensure every car is subjected to a rigorous 200-point inspection and verification process. Our team of master technicians and specialists guarantees that whether you are purchasing a brand-new Mercedes-Benz S-Class or a pre-owned Aston Martin, it meets the highest standards of quality, performance, and luxury.</p>
+
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">Our Vision</h2>
+            <p>To be the premier online destination for luxury automotive enthusiasts, bridging the gap between digital convenience and the tactile elegance of high-end motoring. We believe in transparency, bespoke service, and building lifelong relationships with our discerning clientele.</p>
+            
+            <h2 style="color: var(--color-accent-gold); margin-top: var(--spacing-md);">Our Founder</h2>
+            <p>Established by Kenneth, a lifelong enthusiast and collector, Kenneth Motors embodies a passion for engineering artistry and timeless design. His vision drives our commitment to providing an unparalleled purchase journey from first glance to final delivery.</p>
+            
+            <div style="text-align: center; margin-top: var(--spacing-lg); border-top: 1px solid var(--color-subtle-gray); padding-top: var(--spacing-md);">
+                <a href="contact.html" class="btn btn-primary">Schedule a Private Viewing</a>
+            </div>
+            
+        </div>
+    </main>
+
+    <div class="footer"></div> <script src="./js/data.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/ui.js"></script>
+</body>
+</html>
