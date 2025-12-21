@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Collection - Kenneth Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="./assets/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- DARK MODE INVENTORY STYLES --- */
+        body.page-products {
+            background-color: #050505;
+            color: #fff;
+        }
+
+        .listing-content {
+            display: grid;
+            grid-template-columns: 280px 1fr; /* Sidebar + Grid */
+            gap: 40px;
+            padding-bottom: 80px;
+        }
+
+        /* 1. DARK SIDEBAR FILTERS */
+        .sidebar {
+            background: #111;
+            padding: 30px;
+            border: 1px solid #222;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-group h4 {
+            color: var(--color-accent-gold);
+            font-family: var(--font-heading);
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .filter-group select, 
+        .filter-group input {
+            background: #000;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            font-family: var(--font-body);
+        }
+
+        /* 2. TOP CONTROL BAR (Search & Sort) */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: #111;
+            padding: 20px;
+            border: 1px solid #222;
+        }
+
+        .search-box input {
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px 15px;
+            width: 300px;
+            font-family: var(--font-body);
+        }
+
+        .sort-box select {
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        /* 3. DARK VAULT GRID (3 COLUMNS) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .vault-card {
+            background: #111;
+            border: 1px solid #222;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vault-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent-gold);
+        }
+
+        .vault-img-wrapper {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .vault-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .vault-card:hover .vault-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .vault-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .vault-brand {
+            color: #666;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .vault-title {
+            color: #fff;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .vault-meta {
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #222;
+        }
+
+        .vault-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vault-price {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .btn-vault {
+            background: var(--color-accent-gold);
+            border: none;
+            color: #000;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .btn-vault:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* 4. PAGINATION STYLES */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .page-btn {
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover {
+            border-color: var(--color-accent-gold);
+            color: var(--color-accent-gold);
+        }
+
+        .page-btn.active {
+            background: var(--color-accent-gold);
+            color: #000;
+            border-color: var(--color-accent-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 900px) {
+            .listing-content { grid-template-columns: 1fr; }
+            .sidebar { position: static; margin-bottom: 40px; }
+            .controls-bar { flex-direction: column; gap: 20px; align-items: stretch; }
+            .search-box input { width: 100%; }
+        }
+
+        @media (max-width: 600px) {
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="page-products">
+    
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">KENNETH MOTORS</a>
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html" class="active">Inventory</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <span class="nav-icon" title="Wishlist"><i class="fa-regular fa-star"></i></span>
+                <a href="cart.html" class="nav-icon" title="View Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count" style="display:none; font-size: 0.75rem; background: var(--color-accent-gold); color: var(--color-primary-black); border-radius: 50%; padding: 2px 5px; position: absolute; top: 10px; margin-left: -10px;"></span>
+                </a>
+                <span class="nav-icon menu-toggle" id="menu-toggle">☰</span>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container" style="text-align: center; padding: 60px 0 20px;">
+            <span class="section-tag">Exclusive Inventory</span>
+            <h1 class="section-title" style="margin-bottom: 10px; color: #fff;">The Collection</h1>
+        </div>
+
+        <div class="container listing-content">
+            
+            <aside class="sidebar" data-aos="fade-right">
+                <form id="vault-filters">
+                    <div class="filter-group">
+                        <h4>Brand</h4>
+                        <select id="filter-brand">
+                            <option value="">All Brands</option>
+                            <option value="Rolls-Royce">Rolls-Royce</option>
+                            <option value="Mercedes-Benz">Mercedes-Benz</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Lamborghini">Lamborghini</option>
+                            <option value="Bentley">Bentley</option>
+                            <option value="Porsche">Porsche</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <label style="color:#888; font-size: 0.8rem;">Max Price</label>
+                        <select id="filter-price">
+                            <option value="9999999">No Limit</option>
+                            <option value="500000">Under $500k</option>
+                            <option value="300000">Under $300k</option>
+                            <option value="150000">Under $150k</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="resetFilters()" class="btn-vault" style="width: 100%; text-align: center; background: transparent; border: 1px solid #333; color: #fff;">Reset Filters</button>
+                </form>
+            </aside>
+
+            <div class="main-area">
+                
+                <div class="controls-bar" data-aos="fade-down">
+                    <div class="search-box">
+                        <input type="text" id="search-model" placeholder="Search by Model (e.g. Phantom)...">
+                    </div>
+                    <div class="sort-box">
+                        <select id="sort-order">
+                            <option value="newest">Sort by: Newest</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <section class="product-grid" id="vault-grid">
+                    </section>
+
+                <div class="pagination" id="pagination-controls">
+                    </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container" style="text-align: center;">
+            <div class="footer-brand" style="margin-bottom: 30px;">
+                <h2 style="color: #fff;">KM.</h2>
+                <p style="color: #666;">Curating the finest automobiles since 2018.</p>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2025 Kenneth Motors. All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script src="ui.js"></script>
+
+    <script>
+        let allProducts = [];
+        let currentFiltered = [];
+        let currentPage = 1;
+        const itemsPerPage = 10; // 30 cars / 10 = 3 Pages
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if(typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
+            
+            // 1. Load Data
+            if (typeof carProducts !== 'undefined') {
+                allProducts = carProducts;
+                currentFiltered = [...allProducts]; // Start with all
+                updateDisplay();
+            }
+
+            // 2. Event Listeners
+            document.getElementById('search-model').addEventListener('input', handleSearch);
+            document.getElementById('sort-order').addEventListener('change', handleSort);
+            document.getElementById('filter-brand').addEventListener('change', handleFilter);
+            document.getElementById('filter-price').addEventListener('change', handleFilter);
+
+            if(window.initMobileMenu) initMobileMenu();
+            if(window.updateCartIconCount) updateCartIconCount();
+        });
+
+        // --- MASTER UPDATE FUNCTION ---
+        function updateDisplay() {
+            // 1. Sort
+            const sortMode = document.getElementById('sort-order').value;
+            sortData(sortMode);
+
+            // 2. Paginate
+            const totalPages = Math.ceil(currentFiltered.length / itemsPerPage);
+            // Ensure page is valid
+            if (currentPage > totalPages) currentPage = 1;
+            
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = currentFiltered.slice(start, end);
+
+            // 3. Render Grid
+            renderVault(pageItems);
+
+            // 4. Render Pagination
+            renderPagination(totalPages);
+        }
+
+        function renderVault(products) {
+            const grid = document.getElementById('vault-grid');
+            if (products.length === 0) {
+                grid.innerHTML = '<p style="color: #888; grid-column: 1/-1; text-align: center;">No vehicles found.</p>';
+                return;
+            }
+
+            grid.innerHTML = products.map((car, index) => `
+                <div class="vault-card" data-aos="fade-up">
+                    <div class="vault-img-wrapper">
+                        <a href="product-details.html?id=${car.id}">
+                            <img src="${car.images[0]}" alt="${car.name}">
+                        </a>
+                    </div>
+                    <div class="vault-details">
+                        <div>
+                            <span class="vault-brand">${car.brand}</span>
+                            <h3 class="vault-title"><a href="product-details.html?id=${car.id}" style="color: white; text-decoration: none;">${car.name}</a></h3>
+                            <div class="vault-meta">
+                                ${car.year} • ${car.transmission || 'Auto'} • ${car.fuel || 'Gas'}
+                            </div>
+                        </div>
+                        <div class="vault-footer">
+                            <span class="vault-price">$${car.price.toLocaleString()}</span>
+                            <button class="btn-vault" onclick="addToCartVault('${car.id}', this)">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPagination(totalPages) {
+            const container = document.getElementById('pagination-controls');
+            let html = '';
+
+            if (totalPages > 1) {
+                // Prev
+                html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled style="opacity:0.5"' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
+                
+                // Numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+                }
+
+                // Next
+                html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled style="opacity:0.5"' : ''}><i class="fa-solid fa-chevron-right"></i></button>`;
+            }
+            container.innerHTML = html;
+        }
+
+        function goToPage(page) {
+            if (page < 1 || page > Math.ceil(currentFiltered.length / itemsPerPage)) return;
+            currentPage = page;
+            updateDisplay();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- HANDLERS ---
+        function handleSearch(e) {
+            const term = e.target.value.toLowerCase();
+            applyFilters(term);
+        }
+
+        function handleFilter() {
+            const term = document.getElementById('search-model').value.toLowerCase();
+            applyFilters(term);
+        }
+
+        function applyFilters(searchTerm) {
+            const brand = document.getElementById('filter-brand').value;
+            const price = document.getElementById('filter-price').value;
+
+            currentFiltered = allProducts.filter(car => {
+                const matchSearch = car.name.toLowerCase().includes(searchTerm) || car.brand.toLowerCase().includes(searchTerm);
+                const matchBrand = brand === "" || car.brand === brand;
+                const matchPrice = price === "" || car.price <= parseInt(price);
+                return matchSearch && matchBrand && matchPrice;
+            });
+
+            currentPage = 1; // Reset to page 1 on filter
+            updateDisplay();
+        }
+
+        function handleSort(e) {
+            updateDisplay();
+        }
+
+        function sortData(mode) {
+            if (mode === 'newest') {
+                currentFiltered.sort((a, b) => b.year - a.year);
+            } else if (mode === 'price-asc') {
+                currentFiltered.sort((a, b) => a.price - b.price);
+            } else if (mode === 'price-desc') {
+                currentFiltered.sort((a, b) => b.price - a.price);
+            }
+        }
+
+        function resetFilters() {
+            document.getElementById('vault-filters').reset();
+            document.getElementById('search-model').value = '';
+            document.getElementById('sort-order').value = 'newest';
+            currentFiltered = [...allProducts];
+            currentPage = 1;
+            updateDisplay();
+        }
+
+        function addToCartVault(id, btn) {
+            if (window.addToCart && window.addToCart(id)) {
+                const originalText = btn.innerText;
+                btn.innerText = "Added!";
+                btn.style.background = "#fff";
+                btn.style.color = "#000";
+                
+                if(window.updateCartIconCount) updateCartIconCount();
+
+                setTimeout(() => {
+                    btn.innerText = "Add to Cart";
+                    btn.style.background = "var(--color-accent-gold)";
+                    btn.style.color = "#000";
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
